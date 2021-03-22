@@ -10,8 +10,8 @@ jobs:
     steps:
       - name: "Checkout source code"
         uses: "actions/checkout@v2"
-        with:
-          ref: ${{ github.ref }}
+          with:
+            token: ${{ secrets.PATREPOLEVEL }}
       - name: "Setup Node.js"
         uses: "actions/setup-node@v1"
         with:
@@ -22,7 +22,7 @@ jobs:
         with:
           tag-prefix: ''
         env:
-          GITHUB_TOKEN: ${{ secrets.PATRepoLevel }}
+          GITHUB_TOKEN: ${{ secrets.PATREPOLEVEL }}
       - name: "Output Step"
         env:
           NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
