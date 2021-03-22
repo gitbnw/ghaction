@@ -10,8 +10,8 @@ jobs:
     steps:
       - name: "Checkout source code"
         uses: "actions/checkout@v2"
-          with:
-            token: ${{ secrets.PATREPOLEVEL }}
+        with:
+          token: ${{ secrets.PATREPOLEVEL }}
       - name: "Setup Node.js"
         uses: "actions/setup-node@v1"
         with:
@@ -20,7 +20,7 @@ jobs:
         id: version-bump
         uses: "phips28/gh-action-bump-version@master"
         with:
-          tag-prefix: ''
+          tag-prefix: ""
         env:
           GITHUB_TOKEN: ${{ secrets.PATREPOLEVEL }}
       - name: "Output Step"
