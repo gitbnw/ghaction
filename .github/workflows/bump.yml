@@ -16,6 +16,8 @@ jobs:
         run: |
           git config --global user.name "$GITHUB_ACTOR"
           git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      - name: "Output Step"
+        run: echo "GITHUB_ACTOR $GITHUB_ACTOR"
       - name: "Setup Node.js"
         uses: "actions/setup-node@v1"
         with:
