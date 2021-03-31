@@ -1,7 +1,7 @@
 {
   "name": "ghaction",
   "version": "1.0.5",
-  "description": "",
+  "description": "this is new",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
