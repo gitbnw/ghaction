@@ -13,9 +13,10 @@ jobs:
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v1
         with:
-          configuration: "releaser.json"
+          configuration: "../../releaser.json"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUNNER_DEBUG: 1
 
       - name: Create Release
         uses: actions/create-release@v1
