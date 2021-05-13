@@ -1,26 +1,3 @@
 {
-    "categories": [
-        {
-            "title": "## 🚀 Features",
-            "labels": [
-                "feature"
-            ]
-        },
-        {
-            "title": "## 🐛 Fixes",
-            "labels": [
-                "fix"
-            ]
-        },
-        {
-            "title": "## 🧪 Tests",
-            "labels": [
-                "test"
-            ]
-        }
-    ],
-    "tag_resolver": {
-        "method": "semver"
-    },
     "template": "${{CHANGELOG}}\n\n<h2>Uncategorized</h2>\n\n${{UNCATEGORIZED}}\n"
 }
