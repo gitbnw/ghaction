@@ -1,6 +1,6 @@
 {
   "name": "ghaction",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "this is new",
   "main": "index.js",
   "scripts": {
