@@ -1,0 +1,37 @@
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "package.json"
+jobs:
+  bump-version:
+    name: "Bump Version on main"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout source code"
+        uses: "actions/checkout@v2"
+        with:
+          token: ${{ secrets.PATREPOLEVEL }}
+      - name: Configure CI Git User
+        run: |
+          git config --global user.name "$GITHUB_ACTOR"
+          git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      - name: "Output Step"
+        run: echo "GITHUB_ACTOR $GITHUB_ACTOR"
+      - name: "Setup Node.js"
+        uses: "actions/setup-node@v1"
+        with:
+          node-version: 12
+      - name: "Automated Version Bump"
+        id: version-bump
+        uses: "phips28/gh-action-bump-version@v8.0.18"
+        with:
+          tag-prefix: "v"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PATREPOLEVEL }}
+      - name: "Output Step"
+        env:
+          NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
+        run: echo "new tag $NEW_TAG"
