@@ -1,3 +1,0 @@
-{
-    "template": "${{CHANGELOG}}\n\n<h2>Uncategorized</h2>\n\n${{UNCATEGORIZED}}\n"
-}
