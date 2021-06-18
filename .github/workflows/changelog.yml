@@ -35,17 +35,10 @@ jobs:
         with:
           name: change-log
       - name: Set change-log in env
-        shell: bash
-        run: |
-          echo  "[!] setting env JSON_RESPONSE"
-          echo 'JSON_RESPONSE<<EOF' >> $GITHUB_ENV
-          curl https://httpbin.org/json >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
-      - name: Set change-log in env
         run: |
           echo  "[!] setting env CHANGELOG"
           echo 'CHANGELOG<<EOF' >> $GITHUB_ENV
-          value=`cat change-log.txt`
+          value=$(<change-log.txt)
           echo "$value" >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
       - name: Create Release
