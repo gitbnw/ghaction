@@ -1,0 +1,54 @@
+name: Change Log Testing
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "package.json"
+jobs:
+  change-log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Changelog
+        uses: scottbrenner/generate-changelog-action@master
+        id: Changelog
+      - shell: bash
+        run: |
+          printf %s "${{ steps.Changelog.outputs.changelog }}" > change-log.txt
+      - name: Upload change log
+        uses: actions/upload-artifact@v2
+        with:
+          name: change-log
+          path: change-log.txt
+
+  release-windows-dist:
+    runs-on: ubuntu-latest
+    needs: [change-log]
+    steps:
+      - name: Download change-log
+        uses: actions/download-artifact@v2
+        with:
+          name: change-log
+      - name: Set change-log in env
+        shell: bash
+        run: |
+          echo  "[!] setting env JSON_RESPONSE"
+          echo 'JSON_RESPONSE<<EOF' >> $GITHUB_ENV
+          curl https://httpbin.org/json >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+      - name: Set change-log in env
+        run: |
+          echo  "[!] setting env CHANGELOG"
+          echo 'CHANGELOG<<EOF' >> $GITHUB_ENV
+          cat change-log.txt >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+      - name: Create Release
+        shell: bash
+        run: |
+          echo ${{ env.CHANGELOG }}
+          echo ${{ env.JSON_RESPONSE }}
