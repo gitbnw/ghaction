@@ -50,6 +50,6 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
-          body: "Awscert Build ${{ github.ref }}:\n${{steps.github_release.outputs.changelog}}"
+          body: "Awscert Build ${{ github.ref }}:\n${{env.CHANGELOG}}"
           draft: false
           prerelease: true
