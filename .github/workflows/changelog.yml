@@ -45,7 +45,8 @@ jobs:
         run: |
           echo  "[!] setting env CHANGELOG"
           echo 'CHANGELOG<<EOF' >> $GITHUB_ENV
-          cat change-log.txt >> $GITHUB_ENV
+          value=`cat change-log.txt`
+          echo "$value" >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
       - name: Create Release
         shell: bash
