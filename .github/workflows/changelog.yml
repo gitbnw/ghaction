@@ -51,4 +51,4 @@ jobs:
       - name: Create Release
         shell: bash
         run: |
-          echo ${{ env.JSON_RESPONSE }}
+          echo ${{ env.CHANGELOG }}
