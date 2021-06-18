@@ -2,10 +2,9 @@ name: Change Log Testing
 
 on:
   push:
-    branches:
-      - main
-    paths-ignore:
-      - "package.json"
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 jobs:
   change-log:
     runs-on: ubuntu-latest
@@ -19,7 +18,7 @@ jobs:
         id: Changelog
       - shell: bash
         run: |
-          printf %s "${{ steps.Changelog.outputs.changelog }}" > change-log.txt
+          printf '%s\n' "${{ steps.Changelog.outputs.changelog }}" > change-log.txt
       - name: Upload change log
         uses: actions/upload-artifact@v2
         with:
